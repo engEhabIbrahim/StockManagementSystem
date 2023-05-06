@@ -14,6 +14,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import static eg.edu.bsu.fcai.stockmanagementsystem.assets.ExceptionsMessagesRepository.USER_IN_USE;
+
 @Controller
 @RequestMapping(value = "/users")
 @RequiredArgsConstructor
@@ -60,7 +62,7 @@ public class UsersController {
         try {
             userService.deleteById(id);
         } catch (Exception e) {
-            model.addAttribute("error", "لا يمكن حذف المستخدم وهو مسؤول عن مخازت او له سجل عمليات");
+            model.addAttribute("error", USER_IN_USE);
             return getAllUsersPage(model);
         }
         return "redirect:/users";
