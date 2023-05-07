@@ -9,6 +9,7 @@ import eg.edu.bsu.fcai.stockmanagementsystem.service.UpdateUserService;
 import eg.edu.bsu.fcai.stockmanagementsystem.service.entities.StocksService;
 import eg.edu.bsu.fcai.stockmanagementsystem.service.entities.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +20,7 @@ import static eg.edu.bsu.fcai.stockmanagementsystem.assets.ExceptionsMessagesRep
 @Controller
 @RequestMapping(value = "/users")
 @RequiredArgsConstructor
+@PreAuthorize("hasAnyAuthority('SUPER_ADMIN', 'ADMIN')")
 public class UsersController {
     private final UpdateUserService updateUserService;
     private final UserService userService;

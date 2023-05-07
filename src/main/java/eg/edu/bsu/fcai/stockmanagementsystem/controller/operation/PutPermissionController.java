@@ -14,6 +14,7 @@ import eg.edu.bsu.fcai.stockmanagementsystem.service.stocks.main.MainPutDetailsS
 import eg.edu.bsu.fcai.stockmanagementsystem.service.stocks.main.MainPutItemsService;
 import eg.edu.bsu.fcai.stockmanagementsystem.service.stocks.main.MainPutPermissionService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,6 +27,7 @@ import java.util.List;
 @Controller
 @RequestMapping(value = "/permission/put")
 @RequiredArgsConstructor
+@PreAuthorize("hasAnyAuthority('SUPER_ADMIN', 'ADMIN', 'USER')")
 public class PutPermissionController {
     private final FormService formService;
     private final UserService userService;

@@ -20,6 +20,7 @@ import eg.edu.bsu.fcai.stockmanagementsystem.service.stocks.old.OldGetDetailsSer
 import eg.edu.bsu.fcai.stockmanagementsystem.service.stocks.old.OldGetPermissionService;
 import eg.edu.bsu.fcai.stockmanagementsystem.service.stocks.old.OldPutDetailsService;
 import eg.edu.bsu.fcai.stockmanagementsystem.service.stocks.old.OldPutPermissionService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,6 +30,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping(value = "profile")
+@PreAuthorize("hasAnyAuthority('SUPER_ADMIN', 'ADMIN', 'USER', 'CONSUMER')")
 public class PersonalDetailsController extends DetailsParent {
     public PersonalDetailsController(MainPutDetailsService mainPutDetailsService,
                                      MainPutPermissionService mainPutPermissionService,

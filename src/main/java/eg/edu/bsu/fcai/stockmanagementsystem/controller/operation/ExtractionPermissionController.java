@@ -13,6 +13,7 @@ import eg.edu.bsu.fcai.stockmanagementsystem.service.stocks.old.OldGetDetailsSer
 import eg.edu.bsu.fcai.stockmanagementsystem.service.stocks.old.OldGetPermissionService;
 import eg.edu.bsu.fcai.stockmanagementsystem.service.stocks.old.OldPutItemsService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,6 +25,7 @@ import java.util.List;
 @Controller
 @RequestMapping(value = "permission/extraction")
 @RequiredArgsConstructor
+@PreAuthorize("hasAnyAuthority('SUPER_ADMIN', 'ADMIN', 'USER')")
 public class ExtractionPermissionController {
     private final OldPutItemsService oldPutItemsService;
     private final OldGetDetailsService oldGetDetailsService;

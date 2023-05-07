@@ -7,6 +7,7 @@ import eg.edu.bsu.fcai.stockmanagementsystem.service.stocks.main.MainGetItemsSer
 import eg.edu.bsu.fcai.stockmanagementsystem.service.stocks.main.MainPutItemsService;
 import eg.edu.bsu.fcai.stockmanagementsystem.service.stocks.old.OldPutItemsService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,8 +15,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping(value = "/stocks")
+@RequestMapping(value = "stocks")
 @RequiredArgsConstructor
+@PreAuthorize("hasAnyAuthority('SUPER_ADMIN', 'ADMIN', 'USER')")
 public class StocksController {
     private final MainPutItemsService mainPutItemsService;
     private final MainGetItemsService mainGetItemsService;

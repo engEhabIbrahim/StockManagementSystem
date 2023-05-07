@@ -3,6 +3,7 @@ package eg.edu.bsu.fcai.stockmanagementsystem.controller;
 import eg.edu.bsu.fcai.stockmanagementsystem.model.entities.User;
 import eg.edu.bsu.fcai.stockmanagementsystem.service.HistoryService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping(value = "history")
 @RequiredArgsConstructor
+@PreAuthorize("hasAnyAuthority('SUPER_ADMIN', 'ADMIN')")
 public class GeneralHistoryController {
     private final HistoryService historyService;
 

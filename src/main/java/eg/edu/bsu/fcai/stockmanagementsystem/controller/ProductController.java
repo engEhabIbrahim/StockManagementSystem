@@ -6,6 +6,7 @@ import eg.edu.bsu.fcai.stockmanagementsystem.model.entities.User;
 import eg.edu.bsu.fcai.stockmanagementsystem.service.entities.ProductService;
 import eg.edu.bsu.fcai.stockmanagementsystem.service.entities.StocksService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +17,7 @@ import java.util.List;
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("products")
+@PreAuthorize("hasAnyAuthority('SUPER_ADMIN', 'ADMIN')")
 public class ProductController {
     private final ProductService productService;
     private final FormService formService;

@@ -5,6 +5,7 @@ import eg.edu.bsu.fcai.stockmanagementsystem.model.entities.User;
 import eg.edu.bsu.fcai.stockmanagementsystem.service.HistoryService;
 import eg.edu.bsu.fcai.stockmanagementsystem.service.UpdateUserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("profile")
 @RequiredArgsConstructor
+@PreAuthorize("hasAnyAuthority('SUPER_ADMIN', 'ADMIN', 'USER', 'CONSUMER')")
 public class ProfileController {
     private final UpdateUserService updateUserService;
     private final HistoryService historyService;
